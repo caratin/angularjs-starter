@@ -8,7 +8,6 @@
       'ngRoute',
       'ngSanitize',
       'ngTouch',
-      'chart.js',
       'ngProgress',
       'ui.router',
       'ui.bootstrap',
@@ -43,11 +42,6 @@
     })
     .config(function ($httpProvider) {
       $httpProvider.interceptors.push('authInterceptor');
-    })
-    .config(function (ChartJsProvider) {
-      ChartJsProvider.setOptions({
-        colors: ['#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360']
-      });
     })
     .config(function ($urlRouterProvider, $stateProvider) {
       // default route
