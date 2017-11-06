@@ -7,37 +7,11 @@
       'ngResource',
       'ngRoute',
       'ngSanitize',
-      'ngTouch',
-      'ngProgress',
-      'ui.router',
-      'ui.bootstrap',
+      'ngTouch'
     ])
     .constant('constants', {
       'version': {
         'number': '1.0.0'
-      },
-      'env': {
-        'local': {
-          'url': 'http://localhost:1234',
-          'isDebug': true
-        },
-        'dev': {
-          'url': 'http://localhost:1235',
-          'isDebug': true
-        },
-        'qa': {
-          'url': 'http://localhost:1236',
-          'isDebug': false
-        },
-        'uat': {
-          'url': 'http://localhost:1237',
-          'isDebug': false
-        },
-        'prod': {
-          'url': 'http://localhost:1238',
-          'isDebug': false
-        },
-        'current': 'local'
       }
     })
     .config(function ($httpProvider) {
