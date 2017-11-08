@@ -1,3 +1,8 @@
 @import "node_modules/bootstrap/scss/_functions.scss";
 @import "_variables.scss";
 @import "node_modules/bootstrap/scss/bootstrap.scss";
+
+/* Show it's not fixed to the top */
+body {
+    min-height: 75rem;
+  }

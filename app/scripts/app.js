@@ -31,6 +31,15 @@
               controller: 'HomeController'
             }
           }
+        })
+        .state('about', {
+          url: "/about",
+          views: {
+            content: {
+              templateUrl: 'views/about.html',
+              controller: 'AboutController'
+            }
+          }
         });
 
     })

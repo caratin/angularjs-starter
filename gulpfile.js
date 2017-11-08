@@ -90,7 +90,7 @@ gulp.task('watch', function () {
 });
 
 gulp.task('serve', function (cb) {
-  runSequence('clean:tmp', ['node:modules'], ['jslint'], ['start:client'], 'watch', cb);
+  runSequence('clean:tmp', ['jslint'], ['start:client'], 'watch', cb);
 });
 
 gulp.task('serve:prod', function () {
@@ -104,16 +104,6 @@ gulp.task('serve:prod', function () {
       ]
     }
   });
-});
-
-// inject node components
-gulp.task('node:modules', function () {
-  return gulp.src(paths.views.main)
-    .pipe(wiredep({
-      directory: 'node_modules',
-      ignorePath: '..'
-    }))
-    .pipe(gulp.dest(config.app));
 });
 
 ///////////
