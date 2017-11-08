@@ -142,8 +142,6 @@ gulp.task('client:build', ['html', 'sass'], function () {
       compatibility: 'ie8'
     }))
     .pipe(cssFilter.restore())
-    .pipe($.rev())
-    .pipe($.revReplace())
     .pipe(gulp.dest(config.dist));
 });
 
