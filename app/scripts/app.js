@@ -4,10 +4,10 @@
     .module('angularjs-starter', [
       'ngAnimate',
       'ngCookies',
-      'ngResource',
       'ngRoute',
       'ngSanitize',
-      'ngTouch'
+      'ngTouch',
+      'ui.router'
     ])
     .constant('constants', {
       'version': {

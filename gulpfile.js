@@ -108,13 +108,12 @@ gulp.task('serve:prod', function () {
 
 // inject node components
 gulp.task('node:modules', function () {
-  console.log("test");
-  // return gulp.src(paths.views.main)
-  //   .pipe(wiredep({
-  //     directory: 'node_modules',
-  //     ignorePath: '..'
-  //   }))
-  //   .pipe(gulp.dest(config.app));
+  return gulp.src(paths.views.main)
+    .pipe(wiredep({
+      directory: 'node_modules',
+      ignorePath: '..'
+    }))
+    .pipe(gulp.dest(config.app));
 });
 
 ///////////
