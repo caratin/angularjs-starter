@@ -42,7 +42,7 @@ var styles = lazypipe()
 ///////////
 // Tasks //
 ///////////
-gulp.task('styles', function () {
+gulp.task('sass', function () {
   return gulp.src(paths.styles)
     .pipe(styles());
 });
@@ -56,7 +56,7 @@ gulp.task('clean:tmp', function (cb) {
   rimraf('./.tmp', cb);
 });
 
-gulp.task('start:client', ['start:server', 'styles'], function () {
+gulp.task('start:client', ['start:server', 'sass'], function () {
   openURL('http://localhost:9000');
 });
 
@@ -124,7 +124,7 @@ gulp.task('clean:dist', function (cb) {
   rimraf('./' + config.dist, cb);
 });
 
-gulp.task('client:build', ['html', 'styles'], function () {
+gulp.task('client:build', ['html', 'sass'], function () {
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
 
