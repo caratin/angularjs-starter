@@ -4,15 +4,15 @@
     .module('angularjs-starter', [
       'ngAnimate',
       'ngCookies',
-      'ngResource',
       'ngRoute',
       'ngSanitize',
       'ngTouch',
-      'ngProgress',
       'ui.router'
     ])
-    .constant('version', {
-      'number': '1.0.0'
+    .constant('constants', {
+      'version': {
+        'number': '1.0.0'
+      }
     })
     .config(function ($httpProvider) {
       $httpProvider.interceptors.push('authInterceptor');

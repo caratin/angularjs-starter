@@ -9,8 +9,8 @@ var wiredep = require('wiredep').stream;
 var runSequence = require('run-sequence');
 
 var config = {
-  app: require('./bower.json').appPath || 'app',
-  dist: 'public_html'
+  app: 'app',
+  dist: 'dist'
 };
 
 var paths = {
@@ -42,12 +42,12 @@ var styles = lazypipe()
 ///////////
 // Tasks //
 ///////////
-gulp.task('styles', function () {
+gulp.task('sass', function () {
   return gulp.src(paths.styles)
     .pipe(styles());
 });
 
-gulp.task('lint:scripts', function () {
+gulp.task('jslint', function () {
   return gulp.src(paths.scripts)
     .pipe(lintScripts());
 });
@@ -56,7 +56,7 @@ gulp.task('clean:tmp', function (cb) {
   rimraf('./.tmp', cb);
 });
 
-gulp.task('start:client', ['start:server', 'styles'], function () {
+gulp.task('start:client', ['start:server', 'sass'], function () {
   openURL('http://localhost:9000');
 });
 
@@ -67,10 +67,7 @@ gulp.task('start:server', function () {
     // Change this to '0.0.0.0' to access the server from outside.
     port: 9000,
     middleware: function (connect, opt) {
-      return [
-        ['/bower_components',
-          connect["static"]('./bower_components')
-        ]
+      return [['/node_modules', connect["static"]('./node_modules')]
       ]
     }
   });
@@ -90,13 +87,10 @@ gulp.task('watch', function () {
     .pipe($.plumber())
     .pipe(lintScripts())
     .pipe($.connect.reload());
-
-  gulp.watch('bower.json', ['bower']);
 });
 
 gulp.task('serve', function (cb) {
-  runSequence('clean:tmp', ['bower'], ['lint:scripts'], ['start:client'],
-    'watch', cb);
+  runSequence('clean:tmp', ['node:modules'], ['jslint'], ['start:client'], 'watch', cb);
 });
 
 gulp.task('serve:prod', function () {
@@ -106,19 +100,17 @@ gulp.task('serve:prod', function () {
     port: 9000,
     middleware: function (connect, opt) {
       return [
-        ['/bower_components',
-          connect["static"]('./bower_components')
-        ]
+        ['/node_modules', connect["static"]('./node_modules')]
       ]
     }
   });
 });
 
-// inject bower components
-gulp.task('bower', function () {
+// inject node components
+gulp.task('node:modules', function () {
   return gulp.src(paths.views.main)
     .pipe(wiredep({
-      directory: 'bower_components',
+      directory: 'node_modules',
       ignorePath: '..'
     }))
     .pipe(gulp.dest(config.app));
@@ -132,7 +124,7 @@ gulp.task('clean:dist', function (cb) {
   rimraf('./' + config.dist, cb);
 });
 
-gulp.task('client:build', ['html', 'styles'], function () {
+gulp.task('client:build', ['html', 'sass'], function () {
   var jsFilter = $.filter('**/*.js');
   var cssFilter = $.filter('**/*.css');
 
@@ -150,8 +142,6 @@ gulp.task('client:build', ['html', 'styles'], function () {
       compatibility: 'ie8'
     }))
     .pipe(cssFilter.restore())
-    // .pipe($.rev())
-    // .pipe($.revReplace())
     .pipe(gulp.dest(config.dist));
 });
 
@@ -191,7 +181,7 @@ gulp.task('copy:fonts', function () {
 });
 
 gulp.task('build', ['clean:dist'], function () {
-  runSequence(['lint:scripts', 'copy:extras', 'copy:fonts', 'copy:icons', 'images', 'client:build']);
+  runSequence(['jslint', 'copy:extras', 'copy:fonts', 'copy:icons', 'images', 'client:build']);
 });
 
 gulp.task('default', ['build']);
