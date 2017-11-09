@@ -5,7 +5,6 @@ var $ = require('gulp-load-plugins')();
 var openURL = require('open');
 var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
-var wiredep = require('wiredep').stream;
 var runSequence = require('run-sequence');
 
 var config = {

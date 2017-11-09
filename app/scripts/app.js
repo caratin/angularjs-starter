@@ -7,7 +7,10 @@
       'ngRoute',
       'ngSanitize',
       'ngTouch',
-      'ui.router'
+      'ui.router',
+      'angular-loading-bar',
+      'ngAnimate',
+      'cfp.loadingBar'
     ])
     .constant('constants', {
       'version': {
@@ -17,6 +20,10 @@
     .config(function ($httpProvider) {
       $httpProvider.interceptors.push('authInterceptor');
     })
+    .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+      cfpLoadingBarProvider.includeSpinner = false;
+      cfpLoadingBarProvider.latencyThreshold = 500;
+    }])
     .config(function ($urlRouterProvider, $stateProvider) {
       // default route
       $urlRouterProvider.otherwise("/");
@@ -43,8 +50,15 @@
         });
 
     })
-    .run(function () {
+    .run(function ($trace, $transitions) {
       // app starts here
+      // $trace.enable('TRANSITION');
+
+      $transitions.onStart({}, function (trans) {
+        var progressBar = trans.injector().get('progressBar');
+        progressBar.transitionStart();
+        trans.promise.finally(progressBar.transitionEnd);
+      });
     });
 
 })();
