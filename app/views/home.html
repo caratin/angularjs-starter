@@ -1,3 +1,40 @@
 <div class="jumbotron">
     <h1>Home</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button>
+</div>
+
+<div class="modal fade modal-fullscreen" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="text-white close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Donec eget ex ut nibh ullamcorper commodo. Aenean ac faucibus mi. Nullam luctus dui diam, in congue sem fringilla et. Vivamus
+                non metus at elit ornare maximus. Nam iaculis ex in dolor rutrum, at facilisis dolor euismod. Sed lacinia
+                sagittis lobortis. Suspendisse turpis tellus, pharetra scelerisque odio eget, condimentum tempus nibh. Praesent
+                in diam ac sapien dignissim luctus a quis sapien. Duis sed lacus magna. Maecenas at fringilla quam. Ut purus
+                risus, ultricies eget risus ut, convallis hendrerit eros. Fusce vehicula libero quam, nec cursus nulla interdum
+                eu. Quisque commodo suscipit justo, id auctor metus varius rutrum. ...
+            </div>
+            <div class="modal-footer bg-dark border-0">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default">
+                    <span class="d-none d-md-inline">Some Action</span>
+                    <i class="d-md-none oi oi-ban"></i>
+                    <!-- this will have FA icon -->
+                </button>
+                <button type="button" class="btn btn-default">
+                    <span class="d-none d-md-inline">Save changes</span>
+                    <span class="d-md-none">Save</span>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
