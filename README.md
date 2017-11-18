@@ -1,7 +1,8 @@
 # AngularJS Starter
-A complete out-of-the-box starter pack to develop web apps using [AngularJs](https://angularjs.org/) and [Bootstrap](http://getbootstrap.com/).
 
 [![Build Status](https://travis-ci.org/rjcarneiro/angularjs-starter.svg?branch=master)](https://travis-ci.org/rjcarneiro/angularjs-starter)
+
+A complete out-of-the-box starter pack to develop web apps using [AngularJs](https://angularjs.org/) and [Bootstrap](http://getbootstrap.com/).
 
 ## Changelog
 
