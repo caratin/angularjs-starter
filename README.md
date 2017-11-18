@@ -13,9 +13,9 @@ A complete out-of-the-box starter pack to develop web apps using [AngularJs](htt
 
 In order to start just follow the steps:
 
-- `git clone https://github.com/rjcarneiro/angularjs-starter.git`
-- `npm install`
-- `gulp serve`
+   `git clone https://github.com/rjcarneiro/angularjs-starter.git`
+   `npm install`
+   `gulp serve`
 
 ## Project structure
 
