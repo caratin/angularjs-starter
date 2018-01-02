@@ -6,6 +6,8 @@ A complete out-of-the-box starter pack to develop web apps using [AngularJs](htt
 
 ## Changelog
 
+- 2018-01-02: Added fontawesome as a dependecy;
+- 2017-12-29: Updated bootstrap v4.0.0-beta.3;
 - 2017-11-18: Added [bootstrap4-fs-modal](https://github.com/keaukraine/bootstrap4-fs-modal) to put modals as fullscreen in mobile devices;
 - 2017-11-09: Added progress bar everytime the route changes;
 - 2017-11-08: bootstrap 4.0.0.0-beta all set up;
@@ -14,9 +16,15 @@ A complete out-of-the-box starter pack to develop web apps using [AngularJs](htt
 
 In order to start just follow the steps:
 
-   `git clone https://github.com/rjcarneiro/angularjs-starter.git`  
-   `npm install`     
-   `gulp serve`  
+<pre>
+git clone https://github.com/rjcarneiro/angularjs-starter.git
+npm install
+gulp serve
+</pre>
+
+## Deploy
+
+It's very easy to deploy. On command line, just type `gulp build` and everything you need is created into `.\dist` folder.
 
 ## Project structure
 
@@ -27,26 +35,31 @@ In order to start just follow the steps:
   - views
 
 ## Build
+
 In order to build the project, just need to run `gulp build` or even just `gulp`. It will create the files in `/dist/` folder.
 
 ### Run javascripts errors
-To make sure your javascript code has quality we use [jslint](http://www.jslint.com/). To run the tool just type `gulp jslint` and you can see the output. Also [Team City](https://www.jetbrains.com/teamcity/) integration is already made.  
+
+To make sure your javascript code has quality we use [jslint](http://www.jslint.com/). To run the tool just type `gulp jslint` and you can see the output. Also [Team City](https://www.jetbrains.com/teamcity/) integration is already made.
 
 ## Contributors
+
 Feel free to open `pull-requests` and contribute to this code.
 
 ### People that contribute to this project
+
 - [Ricardo Carneiro](https://github.com/rjcarneiro)
 
 ## Used Libraries
-* Twitter Bootstrap used under the MIT License https://github.com/twbs/bootstrap/blob/master/LICENSE
-* AngularJs used under the MIT License https://github.com/angular/angular.js/blob/master/LICENSE
-* Bootstrap4-fs-modal used under the MIT License https://github.com/keaukraine/bootstrap4-fs-modal/blob/master/LICENSE.txt
-* angular-loading-bar used under the MIT License https://github.com/chieffancypants/angular-loading-bar/blob/master/LICENSE
+
+- Twitter Bootstrap used under the MIT License <https://github.com/twbs/bootstrap/blob/master/LICENSE>
+- AngularJs used under the MIT License <https://github.com/angular/angular.js/blob/master/LICENSE>
+- Bootstrap4-fs-modal used under the MIT License <https://github.com/keaukraine/bootstrap4-fs-modal/blob/master/LICENSE.txt>
+- angular-loading-bar used under the MIT License <https://github.com/chieffancypants/angular-loading-bar/blob/master/LICENSE>
 
 ## License
 
-**The MIT License**
+### The MIT License
 
 Copyright (c) 2017 Ricardo Carneiro
 

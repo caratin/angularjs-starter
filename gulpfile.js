@@ -13,6 +13,7 @@ var config = {
 };
 
 var paths = {
+  fonts: ["node_modules/open-iconic/font/fonts/**/*", "node_modules/font-awesome/fonts/**/*"],
   scripts: [config.app + '/scripts/**/*.js'],
   styles: [config.app + '/styles/**/*.scss'],
   views: {
@@ -27,7 +28,6 @@ var paths = {
 
 var lintScripts = lazypipe()
   .pipe($.jshint, '.jshintrc')
-  .pipe($.jshint.reporter, 'jshint-teamcity')
   .pipe($.jshint.reporter, 'jshint-stylish');
 
 var styles = lazypipe()
@@ -66,7 +66,8 @@ gulp.task('start:server', function () {
     // Change this to '0.0.0.0' to access the server from outside.
     port: 9000,
     middleware: function (connect, opt) {
-      return [['/node_modules', connect["static"]('./node_modules')]
+      return [
+        ['/node_modules', connect["static"]('./node_modules')]
       ]
     }
   });
@@ -79,6 +80,10 @@ gulp.task('watch', function () {
     .pipe($.connect.reload());
 
   $.watch(paths.views.files)
+    .pipe($.plumber())
+    .pipe($.connect.reload());
+
+  $.watch(paths.views.main)
     .pipe($.plumber())
     .pipe($.connect.reload());
 
@@ -97,7 +102,7 @@ gulp.task('serve:prod', function () {
     root: [config.dist],
     livereload: true,
     port: 9000,
-    middleware: function (connect, opt) {
+    middleware: function (connect) {
       return [
         ['/node_modules', connect["static"]('./node_modules')]
       ]
@@ -165,7 +170,7 @@ gulp.task('copy:templates', function () {
 });
 
 gulp.task('copy:fonts', function () {
-  return gulp.src(config.app + '/fonts/**/*')
+  return gulp.src(paths.fonts)
     .pipe(gulp.dest(config.dist + '/fonts'));
 });
 
