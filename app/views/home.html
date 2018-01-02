@@ -5,13 +5,37 @@
     </button>
 </div>
 
+<div class="card-deck">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Full screen modals!</h5>
+            <p class="card-text">
+                <i class="fa fa-television" aria-hidden="true"></i> Displayed fullscreen modals in mobile mode.</p>
+            <p class="card-text">
+                <small class="text-muted">Dec, 2017</small>
+            </p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Fontawesome support!</h5>
+            <p class="card-text">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Now
+                <code>AngularJS Starter</code> supports fontawesome.</p>
+            <p class="card-text">
+                <small class="text-muted">Jan, 2018</small>
+            </p>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade modal-fullscreen" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-dark text-white">
+            <div class="modal-header text-white bg-dark">
                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="text-white close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -25,14 +49,16 @@
             </div>
             <div class="modal-footer bg-dark border-0">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-default">
-                    <span class="d-none d-md-inline">Some Action</span>
-                    <i class="d-md-none oi oi-ban"></i>
-                    <!-- this will have FA icon -->
+                <!-- this button will be hidden -->
+                <button type="button" id="btnTestRefreshSmall" class="btn btn-default">
+                    <span class="d-none d-md-inline">Reload Data</span>
+                    <span class="d-md-none">Reload</span>
+                    <!-- will have short text -->
                 </button>
                 <button type="button" class="btn btn-default">
-                    <span class="d-none d-md-inline">Save changes</span>
-                    <span class="d-md-none">Save</span>
+                    <span class="d-none d-md-inline">Reload Data</span>
+                    <i class="d-md-none fa fa-refresh fa-fw"></i>
+                    <!-- this will have FA icon -->
                 </button>
             </div>
         </div>

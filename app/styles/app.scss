@@ -3,10 +3,7 @@
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
 /* Show it's not fixed to the top */
-body {
-    min-height: 75rem;
-  }
 
-  #loading-bar .bar {
-    background: $orange !important;
-  }
+#loading-bar .bar {
+  background: $orange !important;
+}
