@@ -33,6 +33,9 @@
         colors: ["#2972AB", "#C8785C", "#164479", "#FED049", "#e83e8c", "#949FB1", "#28a745"]
       });
     })
+    .config(function ($locationProvider) {
+      $locationProvider.html5Mode(true);
+    })
     .config(function ($httpProvider) {
       $httpProvider.interceptors.push('authInterceptor');
     })
@@ -79,11 +82,11 @@
         });
 
     })
-    .run(function ($trace, $transitions, $window, $rootScope) {
+    .run(function ($trace, $transitions, $window, $rootScope, constants) {
 
       $rootScope.footer = {
         year: new Date().getFullYear(),
-        version: "0.0.0",
+        version: constants.version.number,
         date: null
       };
 

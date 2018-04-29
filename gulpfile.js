@@ -59,6 +59,8 @@ gulp.task('start:client', ['start:server', 'sass'], function () {
 gulp.task('start:server', function () {
   $.connect.server({
     name: "AngularJsStarter",
+    host: '0.0.0.0',
+    fallback: 'app/index.html',
     root: [config.app, '.tmp'],
     livereload: true,
     port: 9000,
