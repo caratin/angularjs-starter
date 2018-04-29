@@ -2,20 +2,36 @@
   'use strict';
   angular
     .module('angularjs-starter', [
-      'ngAnimate',
-      'ngCookies',
-      'ngRoute',
-      'ngSanitize',
-      'ngTouch',
-      'ui.router',
-      'angular-loading-bar',
-      'ngAnimate',
-      'cfp.loadingBar'
+      "ngAnimate",
+      "ngCookies",
+      "ngRoute",
+      "ngTouch",
+      "ngSanitize",
+      "ui.router",
+      "angular-loading-bar",
+      "ngAnimate",
+      "cfp.loadingBar",
+      "moment-picker",
+      "chart.js",
+      "ui.bootstrap",
+      "angularMoment",
+      "angularFileUpload"
     ])
     .constant('constants', {
+      "url": "http://localhost:50560/api/",
       'version': {
         'number': '1.0.0'
       }
+    })
+    .config(["momentPickerProvider", function (momentPickerProvider) {
+      momentPickerProvider.options({
+        locale: "pt"
+      });
+    }])
+    .config(function (ChartJsProvider) {
+      ChartJsProvider.setOptions("global", {
+        colors: ["#2972AB", "#C8785C", "#164479", "#FED049", "#e83e8c", "#949FB1", "#28a745"]
+      });
     })
     .config(function ($httpProvider) {
       $httpProvider.interceptors.push('authInterceptor');
@@ -50,15 +66,26 @@
         });
 
     })
-    .run(function ($trace, $transitions) {
-      // app starts here
-      // $trace.enable('TRANSITION');
+    .run(function ($trace, $transitions, $window, $rootScope) {
+
+      $rootScope.footer = {
+        year: new Date().getFullYear(),
+        version: "0.0.0",
+        date: null
+      };
+
+      // before window closes
+      $window.onbeforeunload = function () {};
 
       $transitions.onStart({}, function (trans) {
         var progressBar = trans.injector().get('progressBar');
         progressBar.transitionStart();
         trans.promise.finally(progressBar.transitionEnd);
       });
-    });
 
+      $transitions.onSuccess({}, function () {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+      });
+
+    });
 })();

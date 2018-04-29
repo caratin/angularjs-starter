@@ -1,11 +1,13 @@
 'use strict';
 
+var replace = require('gulp-replace');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var openURL = require('open');
 var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var runSequence = require('run-sequence');
+var revReplace = require('gulp-rev-replace');
 
 var config = {
   app: 'app',
@@ -18,14 +20,14 @@ var paths = {
   styles: [config.app + '/styles/**/*.scss'],
   views: {
     main: config.app + '/index.html',
-    files: [config.app + '/views/**/*.html']
+    files: [config.app + '/views/**/*.html'],
+    templates: [config.app + '/templates/**/*.html']
   }
 };
 
 ////////////////////////
 // Reusable pipelines //
 ////////////////////////
-
 var lintScripts = lazypipe()
   .pipe($.jshint, '.jshintrc')
   .pipe($.jshint.reporter, 'jshint-stylish');
@@ -41,11 +43,6 @@ var styles = lazypipe()
 ///////////
 // Tasks //
 ///////////
-gulp.task('sass', function () {
-  return gulp.src(paths.styles)
-    .pipe(styles());
-});
-
 gulp.task('jslint', function () {
   return gulp.src(paths.scripts)
     .pipe(lintScripts());
@@ -61,14 +58,14 @@ gulp.task('start:client', ['start:server', 'sass'], function () {
 
 gulp.task('start:server', function () {
   $.connect.server({
+    name: "AngularJsStarter",
     root: [config.app, '.tmp'],
     livereload: true,
-    // Change this to '0.0.0.0' to access the server from outside.
     port: 9000,
-    middleware: function (connect, opt) {
+    middleware: function (connect) {
       return [
         ['/node_modules', connect["static"]('./node_modules')]
-      ]
+      ];
     }
   });
 });
@@ -80,6 +77,10 @@ gulp.task('watch', function () {
     .pipe($.connect.reload());
 
   $.watch(paths.views.files)
+    .pipe($.plumber())
+    .pipe($.connect.reload());
+
+  $.watch(paths.views.templates)
     .pipe($.plumber())
     .pipe($.connect.reload());
 
@@ -105,7 +106,7 @@ gulp.task('serve:prod', function () {
     middleware: function (connect) {
       return [
         ['/node_modules', connect["static"]('./node_modules')]
-      ]
+      ];
     }
   });
 });
@@ -113,35 +114,58 @@ gulp.task('serve:prod', function () {
 ///////////
 // Build //
 ///////////
-
 gulp.task('clean:dist', function (cb) {
   rimraf('./' + config.dist, cb);
 });
 
 gulp.task('client:build', ['html', 'sass'], function () {
-  var jsFilter = $.filter('**/*.js');
-  var cssFilter = $.filter('**/*.css');
+  var jsFilter = $.filter('**/*.js', {
+    restore: true
+  });
 
+  var cssFilter = $.filter('**/*.css', {
+    restore: true
+  });
+
+  var indexFilter = $.filter(['**/*', '!**/index.html'], {
+    restore: true
+  });
+
+  var cssCleanOptions = {
+    cache: true,
+    compatibility: 'ie8'
+  };
+
+  var today = new Date();
   return gulp.src(paths.views.main)
+    .pipe(replace('XX-XXXXXXXXXXX-X', 'UA-117668651-1'))
+    .pipe(replace('LAST-MODIFIED-DATE', today.toUTCString()))
     .pipe($.useref({
       searchPath: [config.app, '.tmp']
     }))
     .pipe(jsFilter)
+    .pipe(replace(/http:\/\/localhost:\d+\/api/g, 'https://someurl.com/api'))
     .pipe($.ngAnnotate())
     .pipe($.uglify())
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
-    .pipe($.cleanCss({
-      cache: true,
-      compatibility: 'ie8'
-    }))
+    .pipe($.cleanCss(cssCleanOptions))
     .pipe(cssFilter.restore())
+    .pipe(indexFilter)
+    .pipe($.rev())
+    .pipe(indexFilter.restore())
+    .pipe(revReplace())
     .pipe(gulp.dest(config.dist));
 });
 
 gulp.task('html', function () {
   return gulp.src(config.app + '/views/**/*')
     .pipe(gulp.dest(config.dist + '/views'));
+});
+
+gulp.task('sass', function () {
+  return gulp.src(paths.styles)
+    .pipe(styles());
 });
 
 gulp.task('images', function () {
@@ -162,6 +186,8 @@ gulp.task('copy:icons', function () {
 gulp.task('copy:extras', ['copy:templates'], function () {
   gulp.src([config.app + '/*.*', '!' + paths.views.main])
     .pipe(gulp.dest(config.dist));
+  gulp.src(config.app + '/.well-known/**/*')
+    .pipe(gulp.dest(config.dist + '/.well-known'));
 });
 
 gulp.task('copy:templates', function () {
