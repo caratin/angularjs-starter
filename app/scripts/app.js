@@ -44,24 +44,37 @@
       // default route
       $urlRouterProvider.otherwise("/");
 
+      var header = {
+        templateUrl: "views/header.html",
+        controller: "HeaderController"
+      };
+
       // ui router states
       $stateProvider
         .state('main', {
           url: "/",
           views: {
+            header: header,
             content: {
               templateUrl: 'views/home.html',
               controller: 'HomeController'
             }
+          },
+          data: {
+            needsAuth: false
           }
         })
         .state('about', {
           url: "/about",
           views: {
+            header: header,
             content: {
               templateUrl: 'views/about.html',
               controller: 'AboutController'
             }
+          },
+          data: {
+            needsAuth: false
           }
         });
 
@@ -78,6 +91,9 @@
       $window.onbeforeunload = function () {};
 
       $transitions.onStart({}, function (trans) {
+        // check here if user is authenticated and redirect if he's not
+        // var data = trans.to().data;
+        // if (data && data.needsAuth && false) {}
         var progressBar = trans.injector().get('progressBar');
         progressBar.transitionStart();
         trans.promise.finally(progressBar.transitionEnd);
