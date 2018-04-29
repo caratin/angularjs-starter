@@ -8,4 +8,6 @@ $enable-rounded: false;
 $enable-caret:false;
 $form-feedback-valid-color: $gray-400;
 $enable-gradients: false;
-@import "node_modules/bootstrap/scss/bootstrap.scss";
+$white: #fff;
+@import "_color";
+@import "node_modules/mdbootstrap/scss/mdb.scss";

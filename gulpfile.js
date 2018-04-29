@@ -15,7 +15,7 @@ var config = {
 };
 
 var paths = {
-  fonts: ["node_modules/open-iconic/font/fonts/**/*", "node_modules/font-awesome/fonts/**/*"],
+  fonts: ["node_modules/open-iconic/font/fonts/**/*", "node_modules/font-awesome/fonts/**/*", "node_modules/mdbootstrap/font/**/*"],
   scripts: [config.app + '/scripts/**/*.js'],
   styles: [config.app + '/styles/**/*.scss'],
   views: {
