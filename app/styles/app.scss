@@ -9,5 +9,7 @@ $enable-caret:false;
 $form-feedback-valid-color: $gray-400;
 $enable-gradients: false;
 $white: #fff;
+@import "_variables";
+@import "_mdb";
 @import "_color";
 @import "node_modules/mdbootstrap/scss/mdb.scss";
