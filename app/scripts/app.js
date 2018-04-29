@@ -19,9 +19,7 @@
     ])
     .constant('constants', {
       "url": "http://localhost:50560/api/",
-      'version': {
-        'number': '1.0.0'
-      }
+      'version': '1.0.0'
     })
     .config(["momentPickerProvider", function (momentPickerProvider) {
       momentPickerProvider.options({
@@ -86,7 +84,7 @@
 
       $rootScope.footer = {
         year: new Date().getFullYear(),
-        version: constants.version.number,
+        version: constants.version,
         date: null
       };
 

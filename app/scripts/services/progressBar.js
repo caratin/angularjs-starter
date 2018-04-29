@@ -10,7 +10,9 @@
                     }
                 },
                 transitionEnd: function () {
-                    if (--count <= 0) { cfpLoadingBar.complete(); }
+                    if (--count <= 0) {
+                        cfpLoadingBar.complete();
+                    }
                 }
             };
         });

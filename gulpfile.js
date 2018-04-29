@@ -140,7 +140,7 @@ gulp.task('client:build', ['html', 'sass'], function () {
 
   var today = new Date();
   return gulp.src(paths.views.main)
-    .pipe(replace('XX-XXXXXXXXXXX-X', 'UA-117668651-1'))
+    .pipe(replace('XX-XXXXXXXXXXX-X', 'XX-XXXXXXXXXXX-X'))
     .pipe(replace('LAST-MODIFIED-DATE', today.toUTCString()))
     .pipe($.useref({
       searchPath: [config.app, '.tmp']
