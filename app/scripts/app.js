@@ -19,7 +19,7 @@
     ])
     .constant('constants', {
       "url": "http://localhost:50560/api/",
-      'version': '1.0.0'
+      'version': '2.0.0'
     })
     .config(["momentPickerProvider", function (momentPickerProvider) {
       momentPickerProvider.options({

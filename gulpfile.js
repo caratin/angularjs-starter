@@ -16,6 +16,8 @@ var config = {
 
 var paths = {
   fonts: ["node_modules/open-iconic/font/fonts/**/*", "node_modules/font-awesome/fonts/**/*"],
+  mdbFonts: ["node_modules/mdbootstrap/font/**/*"],
+  mdbImages: ["node_modules/mdbootstrap/img/**/*"],
   scripts: [config.app + '/scripts/**/*.js'],
   styles: [config.app + '/styles/**/*.scss'],
   views: {
@@ -197,13 +199,21 @@ gulp.task('copy:templates', function () {
     .pipe(gulp.dest(config.dist + '/templates'));
 });
 
+gulp.task('copy:mdb', function () {
+  gulp.src(paths.mdbFonts)
+    .pipe(gulp.dest(config.dist + '/font'));
+
+  return gulp.src(paths.mdbImages)
+    .pipe(gulp.dest(config.dist + '/img'));
+});
+
 gulp.task('copy:fonts', function () {
   return gulp.src(paths.fonts)
     .pipe(gulp.dest(config.dist + '/fonts'));
 });
 
 gulp.task('build', ['clean:dist'], function () {
-  runSequence(['jslint', 'copy:extras', 'copy:fonts', 'copy:icons', 'images', 'client:build']);
+  runSequence(['jslint', 'copy:extras', 'copy:fonts', 'copy:icons', 'copy:mdb', 'images', 'client:build']);
 });
 
 gulp.task('default', ['build']);

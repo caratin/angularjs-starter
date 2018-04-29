@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="description" content="AngularJs Starter">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta http-equiv="content-language" content="pt-PT,pt" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <meta http-equiv="date" content="LAST-MODIFIED-DATE" />
@@ -26,6 +27,10 @@
   <!-- build:css(.tmp) styles/styles.css -->
   <link rel="stylesheet" href="styles/layout.css" />
   <!-- endbuild -->
+  <!-- build:css(.) styles/md.css -->
+  <link href='/node_modules/toastr/build/toastr.css' rel='stylesheet' type='text/css' media='all' />
+  <link href='/node_modules/mdbootstrap/css/mdb.css' rel='stylesheet' type='text/css' media='all' />
+  <!-- endbuild -->
 </head>
 
 <body ng-app="angularjs-starter">
@@ -34,7 +39,33 @@
     <![endif]-->
 
   <header ui-view="header" role="heading"></header>
-  <main ui-view="content" role="main" class="container-fluid"></main>
+  <main role="main" ui-view="content" class="container"></main>
+
+  <!--Footer-->
+  <footer class="page-footer text-center text-md-left font-small blue pt-4 mt-4">
+
+    <!--Footer Links-->
+    <div class="container text-center text-md-left">
+      <div class="row">
+
+        <!--First column-->
+        <div class="col-md-6 pb-3">
+          <h5 class="text-uppercase">Version</h5>
+          <p>{{footer.version}}</p>
+        </div>
+        <!--/.First column-->
+      </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+      © {{footer.year}} Copyright
+      <a href="https://ricardocarneiro.pt" target="_blank"> Ricardo Carneiro</a>.
+    </div>
+    <!--/.Copyright-->
+  </footer>
+  <!--/.Footer-->
 
   <!-- build:js(.) scripts/vendor.js -->
   <script src="node_modules/jquery/dist/jquery.js" type="text/javascript"></script>
@@ -42,6 +73,10 @@
   <script src="node_modules/angular-animate/angular-animate.js" type="text/javascript"></script>
   <script src="node_modules/angular-route/angular-route.js" type="text/javascript"></script>
   <script src="node_modules/angular-cookies/angular-cookies.js" type="text/javascript"></script>
+  <!-- endbuild -->
+  <!-- build:js(.) scripts/md.js -->
+  <script src="node_modules/mdbootstrap/js/mdb.js" type="text/javascript"></script>
+  <script src="node_modules/toastr/build/toastr.min.js" type="text/javascript"></script>
   <!-- endbuild -->
   <!-- build:js(.) scripts/suppliers.js -->
   <script src="node_modules/angular-sanitize/angular-sanitize.js" type="text/javascript"></script>
