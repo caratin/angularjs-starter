@@ -1,9 +1,11 @@
-@import "node_modules/bootstrap/scss/_functions.scss";
-@import "_variables.scss";
+$primary: #2972AB;
+$secondary: #164479;
+$body-bg: #f8f9fa;
+$brown: #C8785C;
+$yellow: #FED049;
+$gray-400: #ced4da;
+$enable-rounded: false;
+$enable-caret:false;
+$form-feedback-valid-color: $gray-400;
+$enable-gradients: false;
 @import "node_modules/bootstrap/scss/bootstrap.scss";
-
-/* Show it's not fixed to the top */
-
-#loading-bar .bar {
-  background: $orange !important;
-}

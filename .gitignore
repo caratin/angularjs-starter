@@ -4,3 +4,5 @@
 /.sass-cache
 /.vscode
 *.log
+*.lock
+package-lock.json
