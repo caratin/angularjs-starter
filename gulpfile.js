@@ -1,18 +1,22 @@
 'use strict';
 
-var replace = require('gulp-replace');
+var st = require('st');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var openURL = require('open');
 var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var runSequence = require('run-sequence');
+var replace = require('gulp-replace');
 var revReplace = require('gulp-rev-replace');
+var removeCode = require('gulp-remove-code');
 
 var config = {
   app: 'app',
   dist: 'dist'
 };
+
+var port = 9000;
 
 var paths = {
   fonts: ["node_modules/open-iconic/font/fonts/**/*", "node_modules/font-awesome/fonts/**/*"],
@@ -61,14 +65,17 @@ gulp.task('start:client', ['start:server', 'sass'], function () {
 gulp.task('start:server', function () {
   $.connect.server({
     name: "AngularJsStarter",
+    root: [config.app, '.tmp'],
+    port: port,
+    livereload: true,
     host: '0.0.0.0',
     fallback: 'app/index.html',
-    root: [config.app, '.tmp'],
-    livereload: true,
-    port: 9000,
-    middleware: function (connect) {
+    middleware: function () {
       return [
-        ['/node_modules', connect["static"]('./node_modules')]
+        st({
+          path: 'node_modules',
+          url: '/node_modules'
+        })
       ];
     }
   });
@@ -136,6 +143,9 @@ gulp.task('client:build', ['html', 'sass'], function () {
       searchPath: [config.app, '.tmp']
     }))
     .pipe(jsFilter)
+    .pipe(removeCode({
+      production: true
+    }))
     .pipe(replace(/http:\/\/localhost:\d+\/api/g, 'https://someurl.com/api'))
     .pipe($.ngAnnotate())
     .pipe($.uglify())
