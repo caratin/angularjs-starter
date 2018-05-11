@@ -102,22 +102,10 @@ gulp.task('serve', function (cb) {
   runSequence('clean:tmp', ['jslint'], ['start:client'], 'watch', cb);
 });
 
-gulp.task('serve:prod', function () {
-  $.connect.server({
-    root: [config.dist],
-    livereload: true,
-    port: 9000,
-    middleware: function (connect) {
-      return [
-        ['/node_modules', connect["static"]('./node_modules')]
-      ];
-    }
-  });
-});
-
 ///////////
 // Build //
 ///////////
+
 gulp.task('clean:dist', function (cb) {
   rimraf('./' + config.dist, cb);
 });
@@ -151,13 +139,13 @@ gulp.task('client:build', ['html', 'sass'], function () {
     .pipe(replace(/http:\/\/localhost:\d+\/api/g, 'https://someurl.com/api'))
     .pipe($.ngAnnotate())
     .pipe($.uglify())
-    .pipe(jsFilter.restore())
+    .pipe(jsFilter.restore)
     .pipe(cssFilter)
     .pipe($.cleanCss(cssCleanOptions))
-    .pipe(cssFilter.restore())
+    .pipe(cssFilter.restore)
     .pipe(indexFilter)
     .pipe($.rev())
-    .pipe(indexFilter.restore())
+    .pipe(indexFilter.restore)
     .pipe(revReplace())
     .pipe(gulp.dest(config.dist));
 });
