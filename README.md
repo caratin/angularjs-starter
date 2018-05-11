@@ -56,7 +56,6 @@ Feel free to open `pull-requests` and contribute to this code.
 
 - Twitter Bootstrap used under the MIT License <https://github.com/twbs/bootstrap/blob/master/LICENSE>
 - AngularJs used under the MIT License <https://github.com/angular/angular.js/blob/master/LICENSE>
-- Bootstrap4-fs-modal used under the MIT License <https://github.com/keaukraine/bootstrap4-fs-modal/blob/master/LICENSE.txt>
 - angular-loading-bar used under the MIT License <https://github.com/chieffancypants/angular-loading-bar/blob/master/LICENSE>
 
 ## License
