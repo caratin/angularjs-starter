@@ -45,17 +45,11 @@
       // default route
       $urlRouterProvider.otherwise("/");
 
-      var header = {
-        templateUrl: "views/header.html",
-        controller: "HeaderController"
-      };
-
       // ui router states
       $stateProvider
         .state('main', {
           url: "/",
           views: {
-            header: header,
             content: {
               templateUrl: 'views/home.html',
               controller: 'HomeController'
@@ -68,7 +62,6 @@
         .state('about', {
           url: "/about",
           views: {
-            header: header,
             content: {
               templateUrl: 'views/about.html',
               controller: 'AboutController'

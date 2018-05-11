@@ -6,6 +6,7 @@ A complete out-of-the-box starter pack to develop web apps using [AngularJs](htt
 
 ## Changelog
 
+- 2018-05-11: Add Material design bootstrap, update bootstrap v4.1.1 and update all libs;
 - 2018-01-27: Updated to bootstrap v4.0.0 stable;
 - 2018-01-02: Added fontawesome as a dependecy;
 - 2017-12-29: Updated bootstrap v4.0.0-beta.3;
@@ -55,7 +56,6 @@ Feel free to open `pull-requests` and contribute to this code.
 
 - Twitter Bootstrap used under the MIT License <https://github.com/twbs/bootstrap/blob/master/LICENSE>
 - AngularJs used under the MIT License <https://github.com/angular/angular.js/blob/master/LICENSE>
-- Bootstrap4-fs-modal used under the MIT License <https://github.com/keaukraine/bootstrap4-fs-modal/blob/master/LICENSE.txt>
 - angular-loading-bar used under the MIT License <https://github.com/chieffancypants/angular-loading-bar/blob/master/LICENSE>
 
 ## License
