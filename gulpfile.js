@@ -210,13 +210,9 @@ gulp.task('copy:fonts', function() {
         .pipe(gulp.dest(config.dist + '/fonts'));
 });
 
-gulp.task('build', gulp.series('clean:dist', 'jslint', 'copy:extras', 'copy:fonts', 'copy:icons', 'copy:mdb', 'images', 'client:build'), function() {
-
+gulp.task('build', ['clean:dist'], function() {
+    runSequence(['jslint', 'copy:extras', 'copy:fonts', 'copy:icons', 'copy:mdb', 'images', 'client:build']);
 });
-
-// gulp.task('build', ['clean:dist'], function() {
-//     runSequence(['jslint', 'copy:extras', 'copy:fonts', 'copy:icons', 'copy:mdb', 'images', 'client:build']);
-// });
 
 gulp.task('default', gulp.series('build', function(done) {
     done();
