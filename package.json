@@ -60,7 +60,7 @@
         "bootstrap": "^4.1.1",
         "feather-icons": "^4.7.0",
         "font-awesome": "^4.7.0",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "mdbootstrap": "^4.5.1",
         "moment": "^2.22.1",
         "open-iconic": "^1.1.1",
